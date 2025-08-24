@@ -27,6 +27,8 @@ export function useCards<X extends Card>() {
     updateStates,
     currentStateIndex,
     setStateIndex,
+    selectedActions,
+    setSelectedActions,
   } = useFrosthavenStore(useShallow((store) => ({
     states: store.states,
     updateStates: store.updateStates,
@@ -44,10 +46,22 @@ export function useCards<X extends Card>() {
     updateStates([...states.slice(0, currentStateIndex + 1), newState]);
   };
 
-  const selectCard = changeCardStatus(
-    'selected',
-    () => currentCards.filter(c => c.status === 'selected').length < 2,
-  );
+  const selectCard = (card: X) => {
+    const selectedCount = currentCards.filter(c => c.status === 'selected').length;
+    if (selectedCount >= 2) return;
+
+    const otherCards = currentCards.filter(c => c !== card);
+    const newState = [...otherCards, { ...card, status: 'selected' }];
+    updateStates([...states.slice(0, currentStateIndex + 1), newState]);
+
+    if (selectedCount === 0) {
+      setSelectedActions([undefined, undefined]);
+    } else {
+      setSelectedActions(
+        selectedActions.with(selectedCount as 0 | 1, undefined) as typeof selectedActions,
+      );
+    }
+  };
   const discardCard = changeCardStatus('discarded');
   const loseCard = changeCardStatus('lost');
   const recoverCard = changeCardStatus('inHand');
@@ -94,5 +108,6 @@ export function useCards<X extends Card>() {
     makeRest,
     undo,
     redo,
+    setSelectedActions,
   };
 }
