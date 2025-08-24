@@ -1,8 +1,7 @@
-import type { Card } from '../cards.type';
-import { type FrosthavenClass } from '../frosthaven-class.type';
+import { type FrosthavenClassNames } from '../frosthaven-class.type';
 
-export function mapCharacterNameToSecretary(name: FrosthavenClass<Card>['name']) {
-  return {
+export function mapCharacterNameToSecretary(name: FrosthavenClassNames) {
+  const map: Record<FrosthavenClassNames, string> = {
     'Banner Spear': 'banner-spear',
     'Bladeswarm': 'envx',
     'Blinkblade': 'blinkblade',
@@ -21,5 +20,11 @@ export function mapCharacterNameToSecretary(name: FrosthavenClass<Card>['name'])
     'Shattersong': 'shards',
     'Snowdancer': 'snowflake',
     'Trapper': 'trap',
-  }[name];
+    'Red Guard': 'red-guard',
+    'Hatchet': 'hatchet',
+    'Demolitionist': 'demolitionist',
+    'Voidwarden': 'voidwarden',
+  };
+
+  return map[name];
 }

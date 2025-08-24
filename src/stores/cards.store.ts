@@ -35,7 +35,8 @@ export type PersistedCard =
     | 'name'
     | 'status'
     | 'tokenPosition'
-    | 'enhancements'>
+    | 'enhancements'
+    | 'counter'>
   & Pick<HiveCard, 'isSelectedMode'>;
 export interface PersistedState {
   level: number;
@@ -49,7 +50,8 @@ export function partializeCard<X extends HiveCard>({
   status,
   tokenPosition,
   enhancements,
-  isSelectedMode
+  isSelectedMode,
+  counter
 }: X): PersistedCard {
   return {
     name,
@@ -57,6 +59,7 @@ export function partializeCard<X extends HiveCard>({
     tokenPosition,
     enhancements,
     isSelectedMode,
+    counter,
   };
 }
 
