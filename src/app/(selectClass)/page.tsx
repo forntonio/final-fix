@@ -23,7 +23,7 @@ export default function SelectClassPage() {
     <div className='grid grid-cols-3 lg:grid-cols-6 gap-8 p-6 place-items-center bg-linear-to-b from-black to-blue-500 rounded-lg'>
       {fhClasses.map((fhClass) => <SelectClass key={fhClass.name} fhClass={fhClass} />)}
       <div className='col-span-3 lg:col-span-6'>
-        <Image src='/jotl-logo.jpg' alt='Jaws of the Lion logo' width={600} height={150} />
+        <Image src='/jotl-logo.webp' alt='Jaws of the Lion logo' width={600} height={150} />
       </div>
       {jotlClasses.map((fhClass) => <SelectClass key={fhClass.name} fhClass={fhClass} />)}
     </div>
