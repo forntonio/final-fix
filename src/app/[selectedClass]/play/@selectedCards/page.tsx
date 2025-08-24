@@ -53,14 +53,23 @@ export default function PlayedCards<X extends Card>() {
     const cardIndex = selectedCards.indexOf(card);
     const [firstAction, secondAction] = [...selectedActions];
 
-    setSelectedActions(cardIndex
-      ? [action !== 'default' && action === firstAction
-        ? undefined : firstAction,
-        action]
-      : [action,
+    if (cardIndex === 1) {
+      setSelectedActions([
+        action !== 'default' && action === firstAction
+          ? undefined
+          : firstAction,
+        action,
+      ]);
+    } else if (cardIndex === 0) {
+      setSelectedActions([
+        action,
         action !== 'default' && action === secondAction
-          ? undefined : secondAction]
-    );
+          ? undefined
+          : secondAction,
+      ]);
+    } else {
+      return;
+    }
   };
 
   const playTopAction = (card: X) => ({
