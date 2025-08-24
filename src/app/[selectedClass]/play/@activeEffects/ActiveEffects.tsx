@@ -28,6 +28,8 @@ export default function ActiveEffects<X extends Card>() {
     currentCards,
     discardCard,
     loseCard,
+    incrementCounter,
+    decrementCounter,
   } = useCards<X>();
   const {
     activateHiveMode,
@@ -83,7 +85,34 @@ export default function ActiveEffects<X extends Card>() {
     </Modal>}
     <AnimatePresence mode='popLayout'>
       {activeEffects
-        .map((card) => getCardComponent(card))}
+        .map((card) => (
+          <div key={card.name} className='relative group'>
+            {getCardComponent(card)}
+            {typeof card.counter === 'number' && (
+              <div className='absolute top-1 left-1 flex items-center bg-primary text-white rounded px-1 text-xs z-40'>
+                <span>{card.counter}</span>
+                <div className='flex opacity-0 group-hover:opacity-100 ml-1 pointer-events-none group-hover:pointer-events-auto'>
+                  <button
+                    aria-label='decrease counter'
+                    className='px-1'
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      decrementCounter(card);
+                    }}
+                  >-</button>
+                  <button
+                    aria-label='increase counter'
+                    className='px-1'
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      incrementCounter(card);
+                    }}
+                  >+</button>
+                </div>
+              </div>
+            )}
+          </div>
+        ))}
     </AnimatePresence>
   </div>
 }

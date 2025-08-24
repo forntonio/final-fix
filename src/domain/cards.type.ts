@@ -32,6 +32,7 @@ export interface Card {
   initiative: number;
   slots?: SlotArea[];
   tokenPosition?: number;
+  counter?: number;
   availableEnhancements?: EnhancementSlot[];
   enhancements?: (Enhancement | undefined)[];
 }
