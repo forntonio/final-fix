@@ -12,9 +12,16 @@ export const viewport: Viewport = {
 }
 
 export const metadata: Metadata = {
-  title: 'Frosthaven Ability Cards',
-  description: 'Manage your Frosthaven Ability Cards',
-  keywords: ['Frosthaven', 'Frosthaven Ability Cards', 'Frosthaven Cards', 'Frosthaven Cards Manager'],
+  title: 'Gloomhaven Games Ability Cards',
+  description: 'Manage your Gloomhaven Games Ability Cards',
+  keywords: [
+    'Gloomhaven',
+    'Frosthaven',
+    'Gloomhaven Games Ability Cards',
+    'Frosthaven Ability Cards',
+    'Frosthaven Cards',
+    'Frosthaven Cards Manager',
+  ],
 };
 
 export default function RootLayout({
