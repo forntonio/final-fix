@@ -42,7 +42,8 @@ export function useCards<X extends Card>() {
   const changeCardStatus = (newStatus: CardStatus, condition?: () => boolean) => (card: X) => {
     if (condition && !condition()) return;
     const otherCards = currentCards.filter(c => c !== card);
-    const newState = [...otherCards, { ...card, status: newStatus }];
+    const newCard: X = { ...card, status: newStatus, counter: undefined };
+    const newState = [...otherCards, newCard];
     updateStates([...states.slice(0, currentStateIndex + 1), newState]);
   };
 
@@ -69,9 +70,35 @@ export function useCards<X extends Card>() {
   const playCards = (cardsPlayed: { action: Action; card: X }[]) => {
     const newState = [
       ...currentCards.filter(card => !cardsPlayed.map(({ card }) => card.name).includes(card.name)),
-      ...cardsPlayed.map(({ action, card }) => ({ ...card, status: newStatusAfterAction(card.actions, action) })),
+      ...cardsPlayed.map(({ action, card }) => {
+        const status = newStatusAfterAction(card.actions, action);
+        return {
+          ...card,
+          status,
+          ...(status === 'activeTop' || status === 'activeBottom'
+            ? { counter: 1 }
+            : { counter: undefined }),
+        } as X;
+      }),
     ];
 
+    updateStates([...states.slice(0, currentStateIndex + 1), newState]);
+  };
+
+  const incrementCounter = (card: X) => {
+    const index = currentCards.findIndex(c => c === card);
+    if (index === -1) return;
+    const newCard = { ...card, counter: (card.counter ?? 1) + 1 } as X;
+    const newState = currentCards.with(index, newCard);
+    updateStates([...states.slice(0, currentStateIndex + 1), newState]);
+  };
+
+  const decrementCounter = (card: X) => {
+    const index = currentCards.findIndex(c => c === card);
+    if (index === -1) return;
+    const newValue = (card.counter ?? 1) - 1;
+    const newCard = { ...card, counter: newValue > 0 ? newValue : 0 } as X;
+    const newState = currentCards.with(index, newCard);
     updateStates([...states.slice(0, currentStateIndex + 1), newState]);
   };
 
@@ -109,5 +136,7 @@ export function useCards<X extends Card>() {
     undo,
     redo,
     setSelectedActions,
+    incrementCounter,
+    decrementCounter,
   };
 }
