@@ -1,0 +1,8 @@
+@import 'tailwindcss';
+
+@layer base {
+  div[data-theme="voidwarden"] {
+    --color-voidwarden: #4B0082;
+    --color-primary: var(--color-voidwarden);
+  }
+}

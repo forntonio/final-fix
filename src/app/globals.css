@@ -1,0 +1,72 @@
+@import 'tailwindcss';
+@import '../domain/banner-spear/theme.css';
+@import '../domain/bladeswarm/theme.css';
+@import '../domain/blinkblade/theme.css';
+@import '../domain/boneshaper/theme.css';
+@import '../domain/crashing-tide/theme.css';
+@import '../domain/deathwalker/theme.css';
+@import '../domain/deepwraith/theme.css';
+@import '../domain/drifter/theme.css';
+@import '../domain/frozen-fist/theme.css';
+@import '../domain/geminate/theme.css';
+@import '../domain/hive/theme.css';
+@import '../domain/infuser/theme.css';
+@import '../domain/metal-mosaic/theme.css';
+@import '../domain/pain-conduit/theme.css';
+@import '../domain/pyroclast/theme.css';
+@import '../domain/shattersong/theme.css';
+@import '../domain/snowdancer/theme.css';
+@import '../domain/trapper/theme.css';
+@import '../domain/red-guard/theme.css';
+@import '../domain/hatchet/theme.css';
+@import '../domain/demolitionist/theme.css';
+@import '../domain/voidwarden/theme.css';
+
+@theme {
+  --min-width-cards-1: 143px;
+  --min-width-cards-2: 215px;
+  --min-width-cards-3: 287px;
+  --min-width-cards-4: 359px;
+  --min-width-cards-5: 431px;
+  --min-width-cards-6: 503px;
+  --min-width-cards-7: 575px;
+  --min-width-cards-8: 647px;
+  --min-width-cards-9: 719px;
+  --min-width-cards-10: 791px;
+  --min-width-cards-11: 791px;
+  --min-width-cards-12: 791px;
+  --min-width-cards-13: 791px;
+  --min-width-cards-14: 791px;
+
+  --min-height-card: 200px;
+
+  --width-mat: 600px;
+  --width-card: 143px;
+  --width-card-1\/2: 71px;
+  --width-action: 127px;
+
+  --height-mat: 392px;
+  --height-card: 200px;
+  --height-card-1\/2: 100px;
+  --height-action: 78px;
+
+  --margin-card-1\/2: 71px;
+
+  --spacing-card-h-1\/2: 100px;
+  --spacing-card-w-1\/2: 71px;
+  --spacing-icon: 60px;
+
+  --color-primary: white;
+  --shadow-card: -10px 0 15px 3px, 10px 0 15px 3px
+}
+
+html{
+  height:100%;
+  width:100%;
+}
+
+body {
+  height:100%;
+  width:100%;
+  color: white;
+}

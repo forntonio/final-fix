@@ -1,0 +1,8 @@
+@import 'tailwindcss';
+
+@layer base {
+  div[data-theme="demolitionist"] {
+    --color-demolitionist: #808080;
+    --color-primary: var(--color-demolitionist);
+  }
+}

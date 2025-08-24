@@ -1,0 +1,8 @@
+@import 'tailwindcss';
+
+@layer base {
+  div[data-theme="hatchet"] {
+    --color-hatchet: #8B5A2B;
+    --color-primary: var(--color-hatchet);
+  }
+}
