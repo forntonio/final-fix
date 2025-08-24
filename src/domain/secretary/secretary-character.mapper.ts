@@ -1,7 +1,6 @@
-import type { Card } from '../cards.type';
-import { type FrosthavenClass, type FrosthavenClassNames } from '../frosthaven-class.type';
+import { type FrosthavenClassNames } from '../frosthaven-class.type';
 
-export function mapCharacterNameToSecretary(name: FrosthavenClass<Card>['name']) {
+export function mapCharacterNameToSecretary(name: FrosthavenClassNames) {
   const map: Record<FrosthavenClassNames, string> = {
     'Banner Spear': 'banner-spear',
     'Bladeswarm': 'envx',
