@@ -81,11 +81,11 @@ export default function CardPile<X extends Card>({
     }
   };
 
-  const minWidthValue = maxCardLength > 1 ? minWidthValues[maxCardLength - 1] : '';
+  const minWidthValue = maxCardLength > 1 ? `md:${minWidthValues[maxCardLength - 1]}` : '';
 
   return <div
     ref={pileRef}
-    className={`flex min-h-card ${minWidthValue}`}
+    className={`min-h-card grid grid-cols-2 gap-2 justify-center md:flex md:gap-0 ${minWidthValue}`}
     onMouseLeave={() => setFocusCardIndex(null)}
     onTouchMove={handleTouchMove}
   >
@@ -98,8 +98,8 @@ export default function CardPile<X extends Card>({
             onTouchStart={() => setFocusCardIndex(index)}
             onFocus={() => setFocusCardIndex(index)}
             className={maxCardLength < 11
-              ? '-mr-card-1/2'
-              : marginRightForLongHand[maxCardLength as LongHandSize]
+              ? 'md:-mr-card-1/2'
+              : `md:${marginRightForLongHand[maxCardLength as LongHandSize]}`
             }
             animate={{
               scale: focusCardIndex === index ? 1.2 : 1,
