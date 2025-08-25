@@ -72,7 +72,7 @@ export default function ActiveEffects<X extends Card>() {
 
   const cardsWithMode = currentCards.filter(cardHasMode);
 
-  return <div className='grid grid-cols-3 gap-4 min-w-[461px] min-h-card'>
+  return <div className='grid grid-cols-2 md:grid-cols-3 gap-4 min-h-card'>
     {isSelectingMode && <Modal onCancel={() => setIsSelectingMode(false)}>
       <BoardArea title="Select mode">
         <CardPile
