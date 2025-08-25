@@ -20,17 +20,28 @@ export default function SelectCardsHeader() {
 
   const canValidateSelection = fhClass && cards.length === fhClass.handSize;
 
-  return <div className='flex items-center gap-4 p-3'>
-    <h2 className='text-xl'>{name}</h2>
-    <ClassIcon fhClass={fhClass} />
-    <label htmlFor='level'>Level {level}</label>
-    <input type='range' id='level' name='level' min='1' max='9'
-      value={level} onChange={e => setLevel(Number(e.target.value))}
-    />
+  return <div className='flex flex-col gap-3 p-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4 w-full'>
+    <div className='flex items-center gap-2'>
+      <h2 className='text-xl'>{name}</h2>
+      <ClassIcon fhClass={fhClass} />
+    </div>
+    <div className='flex items-center gap-2 w-full sm:w-auto'>
+      <label htmlFor='level'>Level {level}</label>
+      <input
+        type='range'
+        id='level'
+        name='level'
+        min='1'
+        max='9'
+        value={level}
+        onChange={e => setLevel(Number(e.target.value))}
+        className='w-full sm:w-48'
+      />
+    </div>
     {canValidateSelection
       ? (<Link
         href={`/${classNameToURI(fhClass.name)}/play`}
-        className="bg-black hover:bg-primary border-primary text-white font-bold py-2 px-4 rounded-lg border-2 border-solid focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+        className="bg-black hover:bg-primary border-primary text-white font-bold py-2 px-4 rounded-lg border-2 border-solid focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 w-full text-center sm:w-auto"
       >
         Confirm Selection
       </Link>)
@@ -38,11 +49,11 @@ export default function SelectCardsHeader() {
         type="button"
         disabled
         aria-disabled="true"
-        className="bg-black border-primary text-white font-bold py-2 px-4 rounded-lg border-2 border-solid opacity-50 cursor-not-allowed"
+        className="bg-black border-primary text-white font-bold py-2 px-4 rounded-lg border-2 border-solid opacity-50 cursor-not-allowed w-full text-center sm:w-auto"
         title="Select your cards"
       >
         Select your Cards
       </button>)
     }
-  </div >;
+  </div>;
 }
