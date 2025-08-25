@@ -83,38 +83,40 @@ export default function CardPile<X extends Card>({
 
   const minWidthValue = maxCardLength > 1 ? minWidthValues[maxCardLength - 1] : '';
 
-  return <div
-    ref={pileRef}
-    className={`flex min-h-card ${minWidthValue}`}
-    onMouseLeave={() => setFocusCardIndex(null)}
-    onTouchMove={handleTouchMove}
-  >
-    <LazyMotion features={domAnimation}>
-      <AnimatePresence mode='popLayout'>
-        {cards
-          .map((card, index) => <m.div
-            key={card.name}
-            onMouseEnter={() => setFocusCardIndex(index)}
-            onTouchStart={() => setFocusCardIndex(index)}
-            onFocus={() => setFocusCardIndex(index)}
-            className={maxCardLength < 11
-              ? '-mr-card-1/2'
-              : marginRightForLongHand[maxCardLength as LongHandSize]
-            }
-            animate={{
-              scale: focusCardIndex === index ? 1.2 : 1,
-              zIndex: getZIndex(index),
-            }}
-          >
-            <CardComponent
-              card={card}
-              onCloseCard={onCloseCard && index === focusCardIndex
-                ? () => onCloseCard(card)
-                : undefined
+  return <div className='w-full overflow-x-auto'>
+    <div
+      ref={pileRef}
+      className={`flex min-h-card ${minWidthValue}`}
+      onMouseLeave={() => setFocusCardIndex(null)}
+      onTouchMove={handleTouchMove}
+    >
+      <LazyMotion features={domAnimation}>
+        <AnimatePresence mode='popLayout'>
+          {cards
+            .map((card, index) => <m.div
+              key={card.name}
+              onMouseEnter={() => setFocusCardIndex(index)}
+              onTouchStart={() => setFocusCardIndex(index)}
+              onFocus={() => setFocusCardIndex(index)}
+              className={maxCardLength < 11
+                ? '-mr-card-1/2'
+                : marginRightForLongHand[maxCardLength as LongHandSize]
               }
-              actions={actions(card)} />
-          </m.div>)}
-      </AnimatePresence>
-    </LazyMotion>
+              animate={{
+                scale: focusCardIndex === index ? 1.2 : 1,
+                zIndex: getZIndex(index),
+              }}
+            >
+              <CardComponent
+                card={card}
+                onCloseCard={onCloseCard && index === focusCardIndex
+                  ? () => onCloseCard(card)
+                  : undefined
+                }
+                actions={actions(card)} />
+            </m.div>)}
+        </AnimatePresence>
+      </LazyMotion>
+    </div>
   </div>;
 }

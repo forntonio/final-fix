@@ -117,19 +117,21 @@ export default function PlayedCards<X extends Card>() {
     : undefined;
 
   return <BoardArea title='Selected cards' actions={actions}>
-    <div className='flex gap-4 min-h-card min-w-[302px]'>
-      <AnimatePresence mode='popLayout'>
-        {selectedCards
-          .map((card, index) => <CardComponent
-            autoFocus={index === 1}
-            key={card.name}
-            card={card}
-            actions={getPlayableActions(card)}
-            onCloseCard={() => recoverCard(selectedCards[index])}
-          >
-            {selectedActions[index] && getSelectedActionMasks(selectedActions[index])}
-          </CardComponent>)}
-      </AnimatePresence>
+    <div className='w-full overflow-x-auto'>
+      <div className='flex gap-4 min-h-card min-w-[302px]'>
+        <AnimatePresence mode='popLayout'>
+          {selectedCards
+            .map((card, index) => <CardComponent
+              autoFocus={index === 1}
+              key={card.name}
+              card={card}
+              actions={getPlayableActions(card)}
+              onCloseCard={() => recoverCard(selectedCards[index])}
+            >
+              {selectedActions[index] && getSelectedActionMasks(selectedActions[index])}
+            </CardComponent>)}
+        </AnimatePresence>
+      </div>
     </div>
   </BoardArea>;
 }

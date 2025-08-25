@@ -72,47 +72,49 @@ export default function ActiveEffects<X extends Card>() {
 
   const cardsWithMode = currentCards.filter(cardHasMode);
 
-  return <div className='grid grid-cols-3 gap-4 min-w-[461px] min-h-card'>
-    {isSelectingMode && <Modal onCancel={() => setIsSelectingMode(false)}>
-      <BoardArea title="Select mode">
-        <CardPile
-          cards={cardsWithMode}
-          actions={activateHiveModeAction}
-          maxCardLength={cardsWithMode.length}
-          onCloseCard={removeEffectAction}
-        />
-      </BoardArea>
-    </Modal>}
-    <AnimatePresence mode='popLayout'>
-      {activeEffects
-        .map((card) => (
-          <div key={card.name} className='relative group'>
-            {getCardComponent(card)}
-            {typeof card.counter === 'number' && (
-              <div className='absolute top-1 left-1 flex items-center bg-primary text-white rounded px-1 text-xs z-40'>
-                <span>{card.counter}</span>
-                <div className='flex opacity-0 group-hover:opacity-100 ml-1 pointer-events-none group-hover:pointer-events-auto'>
-                  <button
-                    aria-label='decrease counter'
-                    className='px-1'
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      decrementCounter(card);
-                    }}
-                  >-</button>
-                  <button
-                    aria-label='increase counter'
-                    className='px-1'
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      incrementCounter(card);
-                    }}
-                  >+</button>
+  return <div className='w-full overflow-x-auto'>
+    <div className='grid grid-cols-3 gap-4 min-w-[461px] min-h-card'>
+      {isSelectingMode && <Modal onCancel={() => setIsSelectingMode(false)}>
+        <BoardArea title="Select mode">
+          <CardPile
+            cards={cardsWithMode}
+            actions={activateHiveModeAction}
+            maxCardLength={cardsWithMode.length}
+            onCloseCard={removeEffectAction}
+          />
+        </BoardArea>
+      </Modal>}
+      <AnimatePresence mode='popLayout'>
+        {activeEffects
+          .map((card) => (
+            <div key={card.name} className='relative group'>
+              {getCardComponent(card)}
+              {typeof card.counter === 'number' && (
+                <div className='absolute top-1 left-1 flex items-center bg-primary text-white rounded px-1 text-xs z-40'>
+                  <span>{card.counter}</span>
+                  <div className='flex opacity-0 group-hover:opacity-100 ml-1 pointer-events-none group-hover:pointer-events-auto'>
+                    <button
+                      aria-label='decrease counter'
+                      className='px-1'
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        decrementCounter(card);
+                      }}
+                    >-</button>
+                    <button
+                      aria-label='increase counter'
+                      className='px-1'
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        incrementCounter(card);
+                      }}
+                    >+</button>
+                  </div>
                 </div>
-              </div>
-            )}
-          </div>
-        ))}
-    </AnimatePresence>
+              )}
+            </div>
+          ))}
+      </AnimatePresence>
+    </div>
   </div>
 }
