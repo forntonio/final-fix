@@ -117,7 +117,7 @@ export default function PlayedCards<X extends Card>() {
     : undefined;
 
   return <BoardArea title='Selected cards' actions={actions}>
-    <div className='flex gap-4 min-h-card min-w-[302px]'>
+    <div className='flex flex-col items-center gap-4 min-h-card sm:flex-row sm:min-w-[302px]'>
       <AnimatePresence mode='popLayout'>
         {selectedCards
           .map((card, index) => <CardComponent

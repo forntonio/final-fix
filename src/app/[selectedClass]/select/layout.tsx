@@ -13,11 +13,11 @@ export default function SelectCardsLayout({
       {children}
     </BoardArea>
 
-    <div className='flex flex-col gap-4 items-center w-[811px]'>
+    <div className='flex flex-col gap-4 items-center w-full max-w-[811px]'>
       {selectedCards}
 
       <AvailableCardsByLevel level={1} />
-      <div className='flex flex-row flex-wrap gap-4 justify-center items-center'>
+      <div className='grid grid-cols-1 sm:grid-cols-2 gap-4 w-full justify-items-center'>
         <AvailableCardsByLevel level={'X'} />
         {cardsForLevelUp}
       </div>
