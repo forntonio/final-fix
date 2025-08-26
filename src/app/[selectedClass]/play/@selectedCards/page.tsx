@@ -11,10 +11,10 @@ import BoardArea from '@/app/_components/layout/BoardArea';
 
 const bottomActionMask = <div
   key={'mask-action-top'}
-  className='m-2 absolute bg-black/80 left-0 w-action h-action top-[108px]' />;
+  className='absolute left-2 right-2 bottom-2 top-1/2 bg-black/80 pointer-events-none' />;
 const topActionMask = <div
   key={'mask-action-bottom'}
-  className='m-2 absolute bg-black/80 left-0 w-action h-action top-[12px]' />;
+  className='absolute left-2 right-2 top-2 bottom-1/2 bg-black/80 pointer-events-none' />;
 
 function getSelectedActionMasks(action: Action) {
   const masks = [];

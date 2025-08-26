@@ -37,11 +37,13 @@ export default function CardPile<X extends Card>({
   actions,
   maxCardLength = 1,
   onCloseCard,
+  showActionWheelForSingleAction,
 }: {
   cards: X[];
   actions: PileActions<X>;
   maxCardLength?: number;
   onCloseCard?: (card: X) => void;
+  showActionWheelForSingleAction?: boolean;
 }) {
   const [focusCardIndex, setFocusCardIndex] = useState<number | null>(null);
   const pileRef = useRef<HTMLDivElement>(null);
@@ -112,7 +114,8 @@ export default function CardPile<X extends Card>({
                 ? () => onCloseCard(card)
                 : undefined
               }
-              actions={actions(card)} />
+              actions={actions(card)}
+              showActionWheelForSingleAction={showActionWheelForSingleAction} />
           </m.div>)}
       </AnimatePresence>
     </LazyMotion>
