@@ -25,5 +25,6 @@ export default function LostCards() {
     cards={lostPile}
     actions={recoverAction}
     maxCardLength={fhClass.handSize}
+    showActionWheelForSingleAction
   />;
 }

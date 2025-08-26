@@ -91,7 +91,7 @@ export default function ActiveEffects<X extends Card>() {
             {typeof card.counter === 'number' && (
               <div className='absolute top-1 left-1 flex items-center bg-primary text-white rounded px-1 text-xs z-40'>
                 <span>{card.counter}</span>
-                <div className='flex opacity-0 group-hover:opacity-100 ml-1 pointer-events-none group-hover:pointer-events-auto'>
+                <div className='flex ml-1 md:opacity-0 md:group-hover:opacity-100 md:pointer-events-none md:group-hover:pointer-events-auto'>
                   <button
                     aria-label='decrease counter'
                     className='px-1'

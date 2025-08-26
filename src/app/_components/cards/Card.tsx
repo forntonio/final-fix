@@ -15,6 +15,7 @@ export function CardComponent<X extends Card>({
   mapName,
   autoFocus,
   onCloseCard,
+  showActionWheelForSingleAction = false,
 }: {
   card: X;
   children?: ReactNode;
@@ -22,13 +23,14 @@ export function CardComponent<X extends Card>({
   mapName?: string;
   autoFocus?: boolean;
   onCloseCard?: () => void;
+  showActionWheelForSingleAction?: boolean;
 }): ReactNode {
   const innerRef = useRef<HTMLDivElement>(null);
   const [isActionWheelOpen, setIsActionWheelOpen] = useState(false);
 
   const onClickCard = () => {
     if (actions.length === 0) return;
-    if (actions.length === 1) {
+    if (actions.length === 1 && !showActionWheelForSingleAction) {
       actions[0].onClick();
       return;
     }
