@@ -1,25 +1,25 @@
 import { Card } from '@/domain/cards.type';
 import { AnimatePresence, domAnimation, LazyMotion } from 'motion/react';
 import * as m from 'motion/react-m';
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import type { WheelAction } from './ActionWheel';
 import { CardComponent } from './Card';
 
 const minWidthValues = [
-  'min-w-cards-1',
-  'min-w-cards-2',
-  'min-w-cards-3',
-  'min-w-cards-4',
-  'min-w-cards-5',
-  'min-w-cards-6',
-  'min-w-cards-7',
-  'min-w-cards-8',
-  'min-w-cards-9',
-  'min-w-cards-10',
-  'min-w-cards-11',
-  'min-w-cards-12',
-  'min-w-cards-13',
-  'min-w-cards-14',
+  'min-w-[var(--min-width-cards-1)]',
+  'min-w-[var(--min-width-cards-2)]',
+  'min-w-[var(--min-width-cards-3)]',
+  'min-w-[var(--min-width-cards-4)]',
+  'min-w-[var(--min-width-cards-5)]',
+  'min-w-[var(--min-width-cards-6)]',
+  'min-w-[var(--min-width-cards-7)]',
+  'min-w-[var(--min-width-cards-8)]',
+  'min-w-[var(--min-width-cards-9)]',
+  'min-w-[var(--min-width-cards-10)]',
+  'min-w-[var(--min-width-cards-11)]',
+  'min-w-[var(--min-width-cards-12)]',
+  'min-w-[var(--min-width-cards-13)]',
+  'min-w-[var(--min-width-cards-14)]',
 ];
 
 type LongHandSize = 11 | 12 | 13 | 14;
@@ -56,7 +56,7 @@ export default function CardPile<X extends Card>({
 
   useEffect(() => setFocusCardIndex(null), [cards.length]);
 
-  const handleTouchMove = ({ touches }: React.TouchEvent) => {
+  const handleTouchMove = useCallback(({ touches }: React.TouchEvent) => {
     if (pileRef.current) {
       const touch = touches[0];
       const pile = pileRef.current;
@@ -81,9 +81,14 @@ export default function CardPile<X extends Card>({
         setFocusCardIndex(touchedCard);
       }
     }
-  };
+  }, [cards]);
 
-  const minWidthValue = maxCardLength > 1 ? `md:${minWidthValues[maxCardLength - 1]}` : '';
+  const minWidthValue = useMemo(
+    () => maxCardLength > 1
+      ? `md:${minWidthValues[Math.min(maxCardLength - 1, minWidthValues.length - 1)]}`
+      : '',
+    [maxCardLength],
+  );
 
   return <div
     ref={pileRef}
