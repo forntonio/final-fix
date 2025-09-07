@@ -1,35 +1,53 @@
 import { createCards } from '../card.factory';
 import type { Card } from '../cards.type';
 
-const redGuardPath = '/red-guard/abilities';
+const demolitionistPath = '/demolitionist/abilities';
 
-export const redGuardCards: Card[] = createCards([
-  { level: 2, name: 'barbaric instincts', actions: { top: 'activeDiscard', bottom: 'discard' }, initiative: 12 },
-  { level: 'X', name: 'blade dance', actions: { top: 'discard', bottom: 'lose' }, initiative: 29 },
-  { level: 1, name: 'blinding sickle', actions: { top: 'discard', bottom: 'discard' }, initiative: 87 },
-  { level: 4, name: 'burn away the dark', actions: { top: 'discard', bottom: 'discard' }, initiative: 31 },
-  { level: 1, name: 'desert night', actions: { top: 'discard', bottom: 'lose' }, initiative: 90 },
-  { level: 6, name: 'fierce brilliance', actions: { top: 'activeLost', bottom: 'discard' }, initiative: 22 },
-  { level: 1, name: 'flame shroud', actions: { top: 'activeLost', bottom: 'activeDiscard' }, initiative: 6 },
-  { level: 1, name: 'flaming sickle', actions: { top: 'discard', bottom: 'discard' }, initiative: 63 },
-  { level: 6, name: 'flying sickle', actions: { top: 'discard', bottom: 'discard' }, initiative: 91 },
-  { level: 2, name: 'harvest sickle', actions: { top: 'discard', bottom: 'lose' }, initiative: 52 },
-  { level: 1, name: 'healing sands', actions: { top: 'discard', bottom: 'activeDiscard' }, initiative: 32 },
-  { level: 9, name: 'honorable fury', actions: { top: 'discard', bottom: 'discard' }, initiative: 89 },
-  { level: 7, name: 'horns of the beast', actions: { top: 'discard', bottom: 'activeLost' }, initiative: 8 },
-  { level: 8, name: 'no fear', actions: { top: 'activeDiscard', bottom: 'activeLost' }, initiative: 1 },
-  { level: 'X', name: 'precision strike', actions: { top: 'lose', bottom: 'discard' }, initiative: 40 },
-  { level: 8, name: 'prismatic sickle', actions: { top: 'discard', bottom: 'discard' }, initiative: 70 },
-  { level: 4, name: 'radiant sickle', actions: { top: 'discard', bottom: 'discard' }, initiative: 79 },
-  { level: 5, name: 'sand devil', actions: { top: 'activeLost', bottom: 'discard' }, initiative: 55 },
-  { level: 1, name: 'shield of the desert', actions: { top: 'discard', bottom: 'activeLost' }, initiative: 10 },
-  { level: 1, name: 'shield spikes', actions: { top: 'activeLost', bottom: 'discard' }, initiative: 41 },
-  { level: 1, name: 'shocking advance', actions: { top: 'activeDiscard', bottom: 'discard' }, initiative: 14 },
-  { level: 9, name: 'soaring shield', actions: { top: 'lose', bottom: 'activeDiscard' }, initiative: 11 },
-  { level: 3, name: 'strangling chain', actions: { top: 'activeDiscard', bottom: 'discard' }, initiative: 19 },
-  { level: 1, name: 'swift strength', actions: { top: 'discard', bottom: 'activeDiscard' }, initiative: 16 },
-  { level: 1, name: 'twirling stabs', actions: { top: 'discard', bottom: 'discard' }, initiative: 38 },
-  { level: 7, name: 'vicious ballet', actions: { top: 'discard', bottom: 'discard' }, initiative: 28 },
-  { level: 3, name: 'warmth of the sun', actions: { top: 'lose', bottom: 'discard' }, initiative: 23 },
-  { level: 'X', name: 'warrior of the sun', actions: { top: 'activeDiscard', bottom: 'discard' }, initiative: 13 }
-], redGuardPath);
+export const demolitionistCards: Card[] = createCards([
+  // Level 1
+  { level: 1, name: 'windup', actions: { top: 'activeDiscard', bottom: 'activeDiscard' }, initiative: 77 },
+  { level: 1, name: 'crushing weight', actions: { top: 'discard', bottom: 'discard' }, initiative: 22 },
+  { level: 1, name: 'knock out the support', actions: { top: 'activeDiscard', bottom: 'discard' }, initiative: 20 },
+  { level: 1, name: 'explode', actions: { top: 'lose', bottom: 'discard' }, initiative: 28 },
+  { level: 1, name: 'implode', actions: { top: 'discard', bottom: 'discard' }, initiative: 88 },
+  { level: 1, name: 'piston punch', actions: { top: 'discard', bottom: 'discard' }, initiative: 42 },
+  { level: 1, name: 'explosive blitz', actions: { top: 'discard', bottom: 'lose' }, initiative: 19 },
+  { level: 1, name: 'the big one', actions: { top: 'lose', bottom: 'discard' }, initiative: 37 },
+  { level: 1, name: 'one-two punch', actions: { top: 'discard', bottom: 'discard' }, initiative: 66 },
+
+  // Level X
+  { level: 'X', name: 'lobbed charge', actions: { top: 'discard', bottom: 'lose' }, initiative: 52 },
+  { level: 'X', name: 'rubble', actions: { top: 'discard', bottom: 'discard' }, initiative: 55 },
+  { level: 'X', name: 'level', actions: { top: 'discard', bottom: 'activeDiscard' }, initiative: 61 },
+
+  // Level 2
+  { level: 2, name: 'robotic enhancement', actions: { top: 'discard', bottom: 'discard' }, initiative: 33 },
+  { level: 2, name: 'crash protocol', actions: { top: 'activeLost', bottom: 'discard' }, initiative: 74 },
+
+  // Level 3
+  { level: 3, name: 'fire bombs', actions: { top: 'discard', bottom: 'discard' }, initiative: 24 },
+  { level: 3, name: 'nowhere to run', actions: { top: 'lose', bottom: 'discard' }, initiative: 39 },
+
+  // Level 4
+  { level: 4, name: 'extra fuel', actions: { top: 'discard', bottom: 'discard' }, initiative: 17 },
+  { level: 4, name: 'remote detonation', actions: { top: 'discard', bottom: 'lose' }, initiative: 63 },
+
+  // Level 5 (JotL only grants one card at 5)
+  { level: 5, name: 'mech suit', actions: { top: 'activeLost', bottom: 'discard' }, initiative: 80 },
+
+  // Level 6
+  { level: 6, name: 'drill fist', actions: { top: 'discard', bottom: 'activeDiscard' }, initiative: 62 },
+  { level: 6, name: 'dust cloud', actions: { top: 'discard', bottom: 'activeDiscard' }, initiative: 15 },
+
+  // Level 7
+  { level: 7, name: 'micro missiles', actions: { top: 'discard', bottom: 'discard' }, initiative: 16 },
+  { level: 7, name: 'insult to injury', actions: { top: 'activeLost', bottom: 'activeDiscard' }, initiative: 64 },
+
+  // Level 8
+  { level: 8, name: 'gut punch', actions: { top: 'discard', bottom: 'discard' }, initiative: 26 },
+  { level: 8, name: 'the bigger one', actions: { top: 'lose', bottom: 'discard' }, initiative: 31 },
+
+  // Level 9
+  { level: 9, name: 'collateral damage', actions: { top: 'lose', bottom: 'discard' }, initiative: 15 },
+  { level: 9, name: 'wholesale destruction', actions: { top: 'discard', bottom: 'activeDiscard' }, initiative: 34 }
+], demolitionistPath);
