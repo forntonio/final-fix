@@ -1,15 +1,14 @@
-This is a [Next.js](https://nextjs.org/) project to track your ability cards for the game FrostHaven.
-The latest version of this application is hosted [here](https://frosthaven-cards.vercel.app).
+This is a [Next.js](https://nextjs.org/) project to track your ability cards for the game Frosthaven and Jaws of the Lion.
 
 ## Features
 
-- Choose your class (Frosthaven and Envelope X)
+- Choose your class (Frosthaven, JotL and Envelope X)
 - Choose your class ability cards
 - Enhance cards
 - Tracks Discard / Lost / Active Effects
 - Allow short (with reroll) and long rests.
 - Undo / Redo
-- Gloomhaven secretary connection
+- Gloomhaven Secretary connection
 
 ## Getting Started
 
