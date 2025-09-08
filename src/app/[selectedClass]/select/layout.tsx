@@ -7,20 +7,19 @@ export default function SelectCardsLayout({
   selectedCards,
   cardsForLevelUp,
 }: LayoutProps<'/[selectedClass]/select'>) {
-  return (<div className='p-8 flex flex-col gap-4 items-center'>
-    <Heading title='Select your cards' />
-    <BoardArea>
-      {children}
-    </BoardArea>
+  return (
+    <div className='p-8 flex flex-col gap-4 items-center'>
+      <Heading title='Select your cards' />
+      <BoardArea>
+        {children}
+      </BoardArea>
 
-    <div className='flex flex-col gap-4 items-center w-full max-w-[811px]'>
       {selectedCards}
-
       <AvailableCardsByLevel level={1} />
-      <div className='grid grid-cols-1 sm:grid-cols-2 gap-4 w-full justify-items-center'>
+      <div className='flex flex-col sm:flex-row gap-4 items-center justify-center'>
         <AvailableCardsByLevel level={'X'} />
         {cardsForLevelUp}
       </div>
     </div>
-  </div>);
+  );
 }
