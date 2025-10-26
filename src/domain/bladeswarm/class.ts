@@ -3,6 +3,7 @@ import type { FrosthavenClass } from '../frosthaven-class.type';
 import { bladeswarmCards } from './cards';
 
 export const bladeswarm: FrosthavenClass<Card> = {
+  game: 'Frosthaven',
   name: 'Bladeswarm',
   handSize: 11,
   path: '/bladeswarm/icons/fh-bladeswarm-color-icon.svg',

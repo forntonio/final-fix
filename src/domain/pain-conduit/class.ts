@@ -3,6 +3,7 @@ import type { FrosthavenClass } from '../frosthaven-class.type';
 import { painConduitCards } from './cards';
 
 export const painConduit: FrosthavenClass<Card> = {
+  game: 'Frosthaven',
   name: 'Pain Conduit',
   handSize: 10,
   path: '/pain-conduit/icons/fh-pain-conduit-color-icon.svg',

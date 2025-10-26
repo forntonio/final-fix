@@ -1,12 +1,13 @@
 import type { Card } from '../cards.type';
-import type { FrosthavenClass } from '../frosthaven-class.type';
+import type { FrosthavenClass, KnownClass } from '../frosthaven-class.type';
 import { demolitionistCards } from './cards';
 
-export function isDemolitionist(fhClass: FrosthavenClass<Card>): boolean {
-  return fhClass.name === 'Demolitionist';
+export function isDemolitionist(fhClass: KnownClass<Card>): fhClass is FrosthavenClass<Card> {
+  return fhClass.game === 'Frosthaven' && fhClass.name === 'Demolitionist';
 }
 
 export const demolitionist: FrosthavenClass<Card> = {
+  game: 'Frosthaven',
   name: 'Demolitionist',
   handSize: 9,
   path: '/demolitionist/icons/fh-demolitionist-color-icon.svg',

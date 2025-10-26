@@ -63,13 +63,14 @@ export default function useSecretary<X extends Card>() {
     sendGameStateToGhs,
   } = use(WebSocketContext);
   const currentClass = use(ClassContext);
+  const isFrosthavenClass = currentClass.game === 'Frosthaven';
   const [currentCharacter, setCurrentCharacter] = useState<CharacterState>();
   const [currentPlayingFigure, setCurrentPlayingFigure] = useState<Figure>();
   const [state, setState] = useState<GameState['state']>();
   const [lastUpdateInSeconds, setLastUpdateInSeconds] = useState<number>(getNowInSeconds());
 
   const setGhsInitiative = ({ initiative }: X) => {
-    if (connectionStatus !== WebSocket.OPEN || !currentClass || !currentCharacter || !gameState) return;
+    if (connectionStatus !== WebSocket.OPEN || !currentClass || !currentCharacter || !gameState || !isFrosthavenClass) return;
 
     let newInitiative = initiative;
 
@@ -87,7 +88,7 @@ export default function useSecretary<X extends Card>() {
   };
 
   const setGhsInactive = () => {
-    if (connectionStatus !== WebSocket.OPEN || !currentClass || !gameState) return;
+    if (connectionStatus !== WebSocket.OPEN || !currentClass || !gameState || !isFrosthavenClass) return;
     let newGameState = gameState;
     const { figures } = gameState;
     const ghsCharacterName = mapCharacterNameToSecretary(currentClass.name);
@@ -110,7 +111,7 @@ export default function useSecretary<X extends Card>() {
   }
 
   const setGhsIdentity = (identity: number, fromTo: [string, string]) => {
-    if (!gameState || !currentClass || !currentCharacter) return;
+    if (!gameState || !currentClass || !currentCharacter || !isFrosthavenClass) return;
     const { name, title } = currentCharacter;
 
     const undoInfo = ['nextIdentity', title || currentClass.name, name, ...fromTo];
@@ -122,7 +123,7 @@ export default function useSecretary<X extends Card>() {
   }
 
   useEffect(() => {
-    if (!gameState) return;
+    if (!gameState || !isFrosthavenClass) return;
 
     const currentCharacter = gameState.characters
       .find(({ name }) => name === mapCharacterNameToSecretary(currentClass.name));
@@ -133,7 +134,7 @@ export default function useSecretary<X extends Card>() {
     setCurrentCharacter(currentCharacter);
     setCurrentPlayingFigure(currentPlayingFigure);
     setState(gameState.state);
-  }, [gameState, currentClass.name]);
+  }, [gameState, currentClass.name, isFrosthavenClass]);
 
   return {
     connectionStatus,

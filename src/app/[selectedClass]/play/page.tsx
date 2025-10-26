@@ -43,6 +43,11 @@ export default function PlayPage<X extends Card>() {
     currentCharacter,
     currentPlayingFigure,
   } = useSecretary();
+  const primaryClassElement = selectedClass.game !== 'Frosthaven'
+    ? <ClassIcon characterClass={selectedClass} />
+    : isGeminate(selectedClass)
+      ? <ChangeForm />
+      : <ClassIcon characterClass={selectedClass} />;
 
   const currentPlayingString = useMemo(() => {
     if (!currentPlayingFigure) {
@@ -64,10 +69,9 @@ export default function PlayPage<X extends Card>() {
     ]}>
     <div className='flex flex-col gap-4 items-center'>
       <div className='flex gap-4 justify-center items-center'>
-        {!isGeminate(selectedClass) && <ClassIcon fhClass={selectedClass} />}
-        {isGeminate(selectedClass) && <ChangeForm />}
-        {isBlinkblade(selectedClass) && <ChangeSpeed />}
-        {isMetalMosaic(selectedClass) && <ChangePressure />}
+        {primaryClassElement}
+        {selectedClass.game === 'Frosthaven' && isBlinkblade(selectedClass) && <ChangeSpeed />}
+        {selectedClass.game === 'Frosthaven' && isMetalMosaic(selectedClass) && <ChangePressure />}
       </div>
       {connectionStatus === WebSocket.OPEN && <h3 className='text-lg font-bold'>
         {state === 'next' && currentPlayingString}

@@ -3,6 +3,7 @@ import type { FrosthavenClass } from '../frosthaven-class.type';
 import { shattersongCards } from './cards';
 
 export const shattersong: FrosthavenClass<Card> = {
+  game: 'Frosthaven',
   name: 'Shattersong',
   handSize: 10,
   path: '/shattersong/icons/fh-shattersong-color-icon.svg',
