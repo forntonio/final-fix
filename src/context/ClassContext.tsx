@@ -1,34 +1,33 @@
 'use client';
 
-import { bannerSpear } from '@/domain/banner-spear/class';
 import type { Card } from '@/domain/cards.type';
-import { frosthavenClasses } from '@/domain/frosthaven-class';
-import type { FrosthavenClass, FrosthavenClassNames } from '@/domain/frosthaven-class.type';
+import { allClasses } from '@/domain/frosthaven-class';
+import type { KnownClass, KnownClassNames } from '@/domain/frosthaven-class.type';
 import { useFrosthavenStore } from '@/stores/cards.store';
 import { createContext, useEffect } from 'react';
 
-export const ClassContext = createContext<FrosthavenClass<Card>>(bannerSpear);
+export const ClassContext = createContext<KnownClass<Card>>(allClasses[0]!);
 
 export default function ClassProvider({
   children,
-  fhClassName,
+  className,
 }: {
   children: React.ReactNode;
-  fhClassName: FrosthavenClassNames;
+  className: KnownClassNames;
 }) {
   const reset = useFrosthavenStore((state) => state.reset);
-  const fhClass = frosthavenClasses
-    .find(({ name }) => name === fhClassName);
+  const selectedClass = allClasses
+    .find(({ name }) => name === className);
 
-  if (!fhClass) {
-    throw new Error(`Unknown class ${fhClassName}`);
+  if (!selectedClass) {
+    throw new Error(`Unknown class ${className}`);
   }
 
   useEffect(() => {
     reset();
-  });
+  }, [reset, className]);
 
-  return <ClassContext value={fhClass}>
+  return <ClassContext value={selectedClass}>
     {children}
   </ClassContext>;
 }

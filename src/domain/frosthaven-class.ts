@@ -1,4 +1,5 @@
-import { pyroclast } from "@/domain/pyroclast/class";
+import type { Card } from './cards.type';
+import { pyroclast } from './pyroclast/class';
 import { bannerSpear } from './banner-spear/class';
 import { blinkblade } from './blinkblade/class';
 import { boneshaper } from './boneshaper/class';
@@ -6,7 +7,10 @@ import { crashingTide } from './crashing-tide/class';
 import { deathwalker } from './deathwalker/class';
 import { deepwraith } from './deepwraith/class';
 import { drifter } from './drifter/class';
-import type { FrosthavenClassNames } from './frosthaven-class.type';
+import type {
+  KnownClass,
+  KnownClassNames,
+} from './frosthaven-class.type';
 import { frozenFist } from './frozen-fist/class';
 import { geminate } from './geminate/class';
 import { hive } from './hive/class';
@@ -21,6 +25,12 @@ import { redGuard } from './red-guard/class';
 import { hatchet } from './hatchet/class';
 import { demolitionist } from './demolitionist/class';
 import { voidwarden } from './voidwarden/class';
+import { brute } from './gloomhaven/brute/class';
+import { tinkerer } from './gloomhaven/tinkerer/class';
+import { spellweaver } from './gloomhaven/spellweaver/class';
+import { scoundrel } from './gloomhaven/scoundrel/class';
+import { cragheart } from './gloomhaven/cragheart/class';
+import { mindthief } from './gloomhaven/mindthief/class';
 
 const starterClasses = [
   bannerSpear,
@@ -54,14 +64,28 @@ export const frosthavenClasses = [
   ...unlockedClasses,
 ];
 
+export const gloomhavenClasses = [
+  brute,
+  tinkerer,
+  spellweaver,
+  scoundrel,
+  cragheart,
+  mindthief,
+];
+
+export const allClasses: KnownClass<Card>[] = [
+  ...frosthavenClasses,
+  ...gloomhavenClasses,
+];
+
 export function upperFirstLetter(word: string) {
   return word.charAt(0).toUpperCase() + word.slice(1);
 }
 
-export function classNameToURI(className: FrosthavenClassNames): string {
+export function classNameToURI(className: KnownClassNames): string {
   return className.replaceAll(' ', '-').toLowerCase();
 }
 
-export function classURIToName(className: string): FrosthavenClassNames {
-  return className.split('-').map(upperFirstLetter).join(' ') as FrosthavenClassNames;
+export function classURIToName(className: string): KnownClassNames {
+  return className.split('-').map(upperFirstLetter).join(' ') as KnownClassNames;
 }

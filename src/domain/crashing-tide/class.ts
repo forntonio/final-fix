@@ -3,6 +3,7 @@ import type { FrosthavenClass } from '../frosthaven-class.type';
 import { crashingTideCards } from './cards';
 
 export const crashingTide: FrosthavenClass<Card> = {
+  game: 'Frosthaven',
   name: 'Crashing Tide',
   handSize: 12,
   path: '/crashing-tide/icons/fh-crashing-tide-color-icon.svg',

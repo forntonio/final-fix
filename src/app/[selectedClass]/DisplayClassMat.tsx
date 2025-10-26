@@ -7,11 +7,15 @@ import { ClassContext } from '@/context/ClassContext';
 
 export default function DisplayClassMat() {
   const [display, setDisplay] = useState(false);
-  const fhClass = use(ClassContext);
+  const selectedClass = use(ClassContext);
+
+  if (selectedClass.game !== 'Frosthaven') {
+    return null;
+  }
 
   return <>
     {display && <Modal onCancel={() => setDisplay(false)}>
-      <CharacterMat className={fhClass.name}></CharacterMat>
+      <CharacterMat className={selectedClass.name}></CharacterMat>
     </Modal>}
     <button
       aria-label='Display class mat'

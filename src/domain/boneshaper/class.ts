@@ -3,6 +3,7 @@ import type { FrosthavenClass } from '../frosthaven-class.type';
 import { boneshaperCards } from './cards';
 
 export const boneshaper: FrosthavenClass<Card> = {
+  game: 'Frosthaven',
   name: 'Boneshaper',
   handSize: 12,
   path: '/boneshaper/icons/fh-boneshaper-color-icon.svg',

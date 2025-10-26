@@ -1,18 +1,18 @@
 import type { Card } from '@/domain/cards.type';
-import type { FrosthavenClass } from '@/domain/frosthaven-class.type';
+import type { KnownClass } from '@/domain/frosthaven-class.type';
 import Link from 'next/link';
 import ClassIcon from '../_components/class/ClassIcon';
 import { classNameToURI } from '@/domain/frosthaven-class';
 
 export default function SelectClass({
-  fhClass,
+  gameClass,
 }: {
-  fhClass: FrosthavenClass<Card>;
+  gameClass: KnownClass<Card>;
 }) {
-  const { name } = fhClass;
+  const { name } = gameClass;
 
   return <Link
     href={`/${classNameToURI(name)}/select`}>
-    <ClassIcon fhClass={fhClass} />
+    <ClassIcon characterClass={gameClass} />
   </Link>;
 }

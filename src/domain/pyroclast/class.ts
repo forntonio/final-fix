@@ -3,6 +3,7 @@ import type { FrosthavenClass } from '../frosthaven-class.type';
 import { pyroclastCards } from './cards';
 
 export const pyroclast: FrosthavenClass<Card> = {
+  game: 'Frosthaven',
   name: 'Pyroclast',
   handSize: 10,
   path: '/pyroclast/icons/fh-pyroclast-color-icon.svg',

@@ -10,20 +10,20 @@ import { use } from 'react';
 import { useShallow } from 'zustand/shallow';
 
 export default function SelectCardsHeader() {
-  const fhClass = use(ClassContext);
+  const selectedClass = use(ClassContext);
   const { level, setLevel } = useFrosthavenStore(useShallow((state) => ({
     level: state.level,
     setLevel: state.setLevel,
   })));
   const { cards } = useSelectCards();
-  const { name = '' } = fhClass ?? {};
+  const { name = '' } = selectedClass ?? {};
 
-  const canValidateSelection = fhClass && cards.length === fhClass.handSize;
+  const canValidateSelection = selectedClass && cards.length === selectedClass.handSize;
 
   return <div className='flex flex-col gap-3 p-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4 w-full'>
     <div className='flex items-center gap-2'>
       <h2 className='text-xl'>{name}</h2>
-      <ClassIcon fhClass={fhClass} />
+      {selectedClass && <ClassIcon characterClass={selectedClass} />}
     </div>
     <div className='flex items-center gap-2 w-full sm:w-auto'>
       <label htmlFor='level'>Level {level}</label>
@@ -40,7 +40,7 @@ export default function SelectCardsHeader() {
     </div>
     {canValidateSelection
       ? (<Link
-        href={`/${classNameToURI(fhClass.name)}/play`}
+        href={`/${classNameToURI(selectedClass.name)}/play`}
         className="bg-black hover:bg-primary border-primary text-white font-bold py-2 px-4 rounded-lg border-2 border-solid focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 w-full text-center sm:w-auto"
       >
         Confirm Selection

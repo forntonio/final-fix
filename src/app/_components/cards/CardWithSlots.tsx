@@ -49,7 +49,7 @@ export default function CardWithSlots<X extends CardWithRequiredSlots>({
       animate={{ x: x - radius, y: y - radius }}
       transition={{ ease: 'easeOut', duration: 0.2 }}
     >
-      {selectedClass && <CharacterToken className={selectedClass.name} />}
+      {selectedClass?.game === 'Frosthaven' && <CharacterToken className={selectedClass.name} />}
     </m.div>
   </CardComponent>;
 }

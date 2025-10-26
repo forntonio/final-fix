@@ -3,6 +3,7 @@ import type { FrosthavenClass } from '../frosthaven-class.type';
 import { deathwalkerCards } from './cards';
 
 export const deathwalker: FrosthavenClass<Card> = {
+  game: 'Frosthaven',
   name: 'Deathwalker',
   handSize: 11,
   path: '/deathwalker/icons/fh-deathwalker-color-icon.svg',

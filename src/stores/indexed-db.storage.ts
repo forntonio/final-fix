@@ -1,17 +1,17 @@
 import type { StateStorage } from 'zustand/middleware';
 import type { Card } from '@/domain/cards.type';
 import type { PersistedCard } from './cards.store';
-import { FrosthavenClass } from '@/domain/frosthaven-class.type';
+import type { KnownClass } from '@/domain/frosthaven-class.type';
 import { del, get, put, startTransaction } from './indexed-db';
-import { classURIToName, frosthavenClasses } from '@/domain/frosthaven-class';
+import { allClasses, classURIToName } from '@/domain/frosthaven-class';
 import type { HiveCard } from '@/domain/hive/cards';
 
 function getClass<X extends Card>() {
-  const selectedClassName = classURIToName(document.location.pathname.split('/')[1] as FrosthavenClass<X>['name']);
-  return frosthavenClasses.find(({ name }) => name === selectedClassName) as FrosthavenClass<X>;
+  const selectedClassName = classURIToName(document.location.pathname.split('/')[1] as KnownClass<X>['name']);
+  return allClasses.find(({ name }) => name === selectedClassName) as KnownClass<X>;
 }
 
-function departializeCardForClass<X extends HiveCard>(fhClass: FrosthavenClass<X>) {
+function departializeCardForClass<X extends HiveCard>(gameClass: KnownClass<X>) {
   return ({
     name,
     status,
@@ -19,9 +19,9 @@ function departializeCardForClass<X extends HiveCard>(fhClass: FrosthavenClass<X
     enhancements,
     isSelectedMode,
   }: PersistedCard): X => {
-    const card = fhClass.cards.find((card) => card.name === name);
+    const card = gameClass.cards.find((card) => card.name === name);
     if (!card) {
-      throw new Error(`Card ${name} not found in ${fhClass.name}`);
+      throw new Error(`Card ${name} not found in ${gameClass.name}`);
     }
     return {
       ...card,
