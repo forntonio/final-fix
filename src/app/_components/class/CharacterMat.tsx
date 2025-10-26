@@ -1,6 +1,6 @@
 'use client';
 
-import { classNameToURI } from '@/domain/frosthaven-class';
+import { classNameToURI, gloomhavenClassNames } from '@/domain/frosthaven-class';
 import type { FrosthavenClassNames } from '@/domain/frosthaven-class.type';
 import { domAnimation, LazyMotion } from 'motion/react';
 import * as m from 'motion/react-m';
@@ -14,6 +14,15 @@ export default function CharacterMat({
 }) {
   const [displayFront, setDisplayFront] = useState(true);
   const fhClassName = classNameToURI(className);
+  const isGloomhaven = gloomhavenClassNames.includes(className);
+
+  if (isGloomhaven) {
+    return <div className='w-mat h-mat flex flex-col items-center justify-center gap-4 rounded border border-dashed border-slate-500 bg-slate-900/60 p-6 text-center'>
+      <p className='text-lg font-semibold uppercase tracking-wide'>{className}</p>
+      <p className='text-sm text-slate-200'>Add mat images at <span className='font-mono break-all'>{`public/gloomhaven/${fhClassName}/mats/gh2-${fhClassName}.webp`}</span> and a back face with <span className='font-mono break-all'>{`public/gloomhaven/${fhClassName}/mats/gh2-${fhClassName}-back.webp`}</span>.</p>
+    </div>;
+  }
+
   const matPath = `/${fhClassName}/mats/fh-${fhClassName}.webp`;
   const matBackPath = `/${fhClassName}/mats/fh-${fhClassName}-back.webp`;
 

@@ -7,7 +7,7 @@ import { useRouter } from 'next/navigation';
 import type { Enhancement, EnhancementSlot } from '@/domain/enhancement/enhancement.type';
 import { bannerSpearCards } from '@/domain/banner-spear/cards';
 import Button from '../_components/inputs/Button';
-import { frosthavenClasses } from '@/domain/frosthaven-class';
+import { allClasses } from '@/domain/frosthaven-class';
 
 const RADIUS = 5;
 
@@ -55,7 +55,7 @@ export default function TestCard(
     cardName = bannerSpearCards[0].name
   } = searchParams;
 
-  const selectedClass = frosthavenClasses.find(({ name }) => name === className);
+  const selectedClass = allClasses.find(({ name }) => name === className);
   const selectedCard = selectedClass?.cards.find(({ name }) => name === cardName) ?? selectedClass?.cards[0];
   const [currentCard, setCard] = useState(selectedCard);
   const router = useRouter();
@@ -102,7 +102,7 @@ export default function TestCard(
       }}
       defaultValue={className}
     >
-      {frosthavenClasses.map((fhClass) => {
+      {allClasses.map((fhClass) => {
         return <option
           key={fhClass.name}
           value={fhClass.name}>{fhClass.name}</option>;

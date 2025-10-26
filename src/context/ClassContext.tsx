@@ -2,7 +2,7 @@
 
 import { bannerSpear } from '@/domain/banner-spear/class';
 import type { Card } from '@/domain/cards.type';
-import { frosthavenClasses } from '@/domain/frosthaven-class';
+import { allClasses } from '@/domain/frosthaven-class';
 import type { FrosthavenClass, FrosthavenClassNames } from '@/domain/frosthaven-class.type';
 import { useFrosthavenStore } from '@/stores/cards.store';
 import { createContext, useEffect } from 'react';
@@ -17,7 +17,7 @@ export default function ClassProvider({
   fhClassName: FrosthavenClassNames;
 }) {
   const reset = useFrosthavenStore((state) => state.reset);
-  const fhClass = frosthavenClasses
+  const fhClass = allClasses
     .find(({ name }) => name === fhClassName);
 
   if (!fhClass) {

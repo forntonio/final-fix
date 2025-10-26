@@ -1,5 +1,5 @@
 import ClassProvider from '@/context/ClassContext';
-import { classNameToURI, classURIToName, frosthavenClasses } from '@/domain/frosthaven-class';
+import { allClasses, classNameToURI, classURIToName } from '@/domain/frosthaven-class';
 import type { FrosthavenClassNames } from '@/domain/frosthaven-class.type';
 import type { Metadata, ResolvingMetadata } from 'next';
 import DisplayClassMat from './DisplayClassMat';
@@ -11,7 +11,7 @@ type Params = Promise<{
 }>;
 
 export function generateStaticParams() {
-  return frosthavenClasses.map(({ name }) => ({
+  return allClasses.map(({ name }) => ({
     selectedClass: classNameToURI(name),
   }));
 }
@@ -28,10 +28,10 @@ export async function generateMetadata({
   const keywords = (await parent).keywords ?? [];
 
   return {
-    title: `${fhClassName} - Frosthaven Cards`,
-    description: `Manage your Frosthaven ${fhClassName} Cards`,
+    title: `${fhClassName} - Ability Cards`,
+    description: `Manage your ${fhClassName} ability cards online`,
     keywords: [...keywords, fhClassName],
-  }
+  };
 }
 
 export default async function Layout({

@@ -1,5 +1,5 @@
 import { initialState, type PersistedCard } from '../cards.store';
-import { frosthavenClasses } from '@/domain/frosthaven-class';
+import { allClasses } from '@/domain/frosthaven-class';
 import { get, put } from '../indexed-db';
 import type { CardStatus } from '@/domain/cards.type';
 
@@ -21,7 +21,7 @@ function updateCardStatus({ status, ...card }: PersistedCard): PersistedCard {
 }
 
 export default async function updateCardsStatus(transaction: IDBTransaction) {
-  const classNames = frosthavenClasses.map(({ name }) => name);
+  const classNames = allClasses.map(({ name }) => name);
 
   await Promise.all(classNames.map(async (className) => {
     const state = await get(transaction)(className);

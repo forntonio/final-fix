@@ -24,6 +24,7 @@ export interface Card {
   name: string;
   level: number | 'X';
   path: string;
+  imageAvailable?: boolean;
   status: CardStatus;
   actions: {
     top: CardActions;

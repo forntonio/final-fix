@@ -5,9 +5,12 @@ export type FrosthavenClassNames =
   | 'Bladeswarm'
   | 'Blinkblade'
   | 'Boneshaper'
+  | 'Brute'
+  | 'Cragheart'
   | 'Deathwalker'
   | 'Deepwraith'
   | 'Drifter'
+  | 'Mindthief'
   | 'Frozen Fist'
   | 'Geminate'
   | 'Crashing Tide'
@@ -16,9 +19,12 @@ export type FrosthavenClassNames =
   | 'Metal Mosaic'
   | 'Pain Conduit'
   | 'Pyroclast'
+  | 'Scoundrel'
   | 'Shattersong'
   | 'Snowdancer'
+  | 'Spellweaver'
   | 'Trapper'
+  | 'Tinkerer'
   | 'Red Guard'
   | 'Hatchet'
   | 'Demolitionist'
@@ -30,4 +36,5 @@ export interface FrosthavenClass<X extends Card> {
   path: string;
   iconSize: { width: number; height: number };
   cards: X[];
+  iconAvailable?: boolean;
 }

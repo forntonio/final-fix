@@ -84,15 +84,21 @@ export function CardComponent<X extends Card>({
       <button
         autoFocus={autoFocus}
         aria-label={cardLabel}
-        onClick={onClickCard}>
-        <Image
-          className='shadow-card shadow-gray-950/80'
-          {...(mapName ? { useMap: `#${mapName}` } : {})}
-          src={card.path}
-          alt={`card ${card.name}`}
-          width={143}
-          height={200}
-        />
+        onClick={onClickCard}
+        className='w-[143px] h-[200px]'>
+        {card.imageAvailable === false
+          ? <div className='shadow-card shadow-gray-950/80 flex h-full w-full flex-col items-center justify-center gap-2 rounded bg-slate-700 p-3 text-center text-xs uppercase tracking-wide'>
+            <p>{card.name}</p>
+            <p className='normal-case text-[10px] leading-3'>Add WebP image at <span className='break-all'>{`public${card.path}`}</span></p>
+          </div>
+          : <Image
+            className='shadow-card shadow-gray-950/80'
+            {...(mapName ? { useMap: `#${mapName}` } : {})}
+            src={card.path}
+            alt={`card ${card.name}`}
+            width={143}
+            height={200}
+          />}
       </button>
       {onCloseCard && <button
         aria-label='remove card'

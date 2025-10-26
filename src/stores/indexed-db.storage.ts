@@ -3,12 +3,12 @@ import type { Card } from '@/domain/cards.type';
 import type { PersistedCard } from './cards.store';
 import { FrosthavenClass } from '@/domain/frosthaven-class.type';
 import { del, get, put, startTransaction } from './indexed-db';
-import { classURIToName, frosthavenClasses } from '@/domain/frosthaven-class';
+import { allClasses, classURIToName } from '@/domain/frosthaven-class';
 import type { HiveCard } from '@/domain/hive/cards';
 
 function getClass<X extends Card>() {
   const selectedClassName = classURIToName(document.location.pathname.split('/')[1] as FrosthavenClass<X>['name']);
-  return frosthavenClasses.find(({ name }) => name === selectedClassName) as FrosthavenClass<X>;
+  return allClasses.find(({ name }) => name === selectedClassName) as FrosthavenClass<X>;
 }
 
 function departializeCardForClass<X extends HiveCard>(fhClass: FrosthavenClass<X>) {
