@@ -74,7 +74,7 @@ export const mindthiefCards: Card[] = createCards([
     level: 1,
     name: 'perverse edge',
     actions: { top: 'lose', bottom: 'discard' },
-    initiative: 08,
+    initiative: 8,
   },
   {
     level: 1,
