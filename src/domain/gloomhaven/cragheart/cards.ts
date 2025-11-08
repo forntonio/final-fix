@@ -6,8 +6,8 @@ const cragheartPath = '/gloomhaven/cragheart/abilities';
 export const cragheartCards: Card[] = createCards([
   {
     level: 'X',
-    name: 'forceful storm',
-    actions: { top: 'lose', bottom: 'activeDiscard' },
+    name: 'petrify',
+    actions: { top: 'lose', bottom: 'discard' },
     initiative: 53,
   },
   {
@@ -18,32 +18,32 @@ export const cragheartCards: Card[] = createCards([
   },
   {
     level: 'X',
-    name: 'natures lift',
-    actions: { top: 'discard', bottom: 'activeLost' },
-    initiative: 64,
+    name: 'burrow',
+    actions: { top: 'discard', bottom: 'lose' },
+    initiative: 94,
   },
   {
     level: 1,
-    name: 'rock tunnel',
-    actions: { top: 'discard', bottom: 'lose' },
+    name: 'earthen bulwark',
+    actions: { top: 'discard', bottom: 'discard' },
     initiative: 41,
   },
   {
     level: 1,
     name: 'rumbling advance',
     actions: { top: 'discard', bottom: 'discard' },
-    initiative: 29,
+    initiative: 38,
   },
   {
     level: 1,
     name: 'unstable upheaval',
-    actions: { top: 'lose', bottom: 'activeLost' },
-    initiative: 20,
+    actions: { top: 'lose', bottom: 'discard' },
+    initiative: 13,
   },
   {
     level: 1,
     name: 'earthen clod',
-    actions: { top: 'discard', bottom: 'discard' },
+    actions: { top: 'discard', bottom: 'lose' },
     initiative: 38,
   },
   {
@@ -68,7 +68,7 @@ export const cragheartCards: Card[] = createCards([
     level: 1,
     name: 'crushing grasp',
     actions: { top: 'discard', bottom: 'discard' },
-    initiative: 8,
+    initiative: 35,
   },
   {
     level: 1,
