@@ -42,7 +42,7 @@ export const cragheartCards: Card[] = createCards([
   },
   {
     level: 1,
-    name: 'earthen cloud',
+    name: 'earthen clod',
     actions: { top: 'discard', bottom: 'discard' },
     initiative: 38,
   },
